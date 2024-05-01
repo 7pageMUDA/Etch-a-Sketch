@@ -1,5 +1,14 @@
 const container = document.querySelector(".container");
 
+const button = document.querySelector("button");
+button.addEventListener("click", () => {
+    let numSquaresPerSide;
+    // keep asking user for input until it is in range (0, 100]
+    do {
+        numSquaresPerSide = +prompt("Enter number of squares per side");
+    } while (!(numSquaresPerSide > 0 && numSquaresPerSide <= 100));
+});
+
 function createGrid() {
     // create 16 rows of flexbox each called gridRow
     for (let i = 0; i < 16; i++) {
