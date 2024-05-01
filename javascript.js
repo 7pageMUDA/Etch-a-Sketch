@@ -36,17 +36,22 @@ function hoverEffect() {
 
 createGrid();
 
-// when user clicks on the button,
-// keep asking for input until it is in range (0, 100]
-const button = document.querySelector("button");
-let numSquaresPerSide;
-button.addEventListener("click", () => {
-    do {
-        numSquaresPerSide = +prompt("Enter number of squares per side");
-        console.log("Hello");
-    } while (!(numSquaresPerSide > 0 && numSquaresPerSide <= 100));
+function removeCurrentGrid() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
+}
+
+
+const button = document.querySelector("button");
+let numSquaresPerSide;
+button.addEventListener("click", () => {
+    // when user clicks on the button,
+    // keep asking for input until it is in range (0, 100]
+    do {
+        numSquaresPerSide = +prompt("Enter number of squares per side", "16");
+    } while (!(numSquaresPerSide > 0 && numSquaresPerSide <= 100));
+
+    removeCurrentGrid();
     createGrid(numSquaresPerSide);
 });
