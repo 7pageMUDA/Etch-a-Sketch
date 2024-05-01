@@ -1,4 +1,22 @@
 const container = document.querySelector(".container");
+createGrid();
+
+const button = document.querySelector("button");
+let numSquaresPerSide;
+button.addEventListener("click", () => {
+    // when user clicks on the button,
+    // keep asking for input until it is in range (0, 100]
+    do {
+        numSquaresPerSide = prompt("Enter number of squares per side");
+    } while (numSquaresPerSide != null && !(+numSquaresPerSide > 0 && +numSquaresPerSide <= 100));
+
+    if (numSquaresPerSide == null) {
+        // if prompt was cancelled, do nothing
+    } else {
+        removeCurrentGrid();
+        createGrid(numSquaresPerSide);
+    }
+});
 
 function createGrid(numSquaresPerSide = 16) {
     // create 16 rows of flexbox each called gridRow
@@ -34,24 +52,9 @@ function hoverEffect() {
     });
 }
 
-createGrid();
 
 function removeCurrentGrid() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
 }
-
-
-const button = document.querySelector("button");
-let numSquaresPerSide;
-button.addEventListener("click", () => {
-    // when user clicks on the button,
-    // keep asking for input until it is in range (0, 100]
-    do {
-        numSquaresPerSide = +prompt("Enter number of squares per side", "16");
-    } while (!(numSquaresPerSide > 0 && numSquaresPerSide <= 100));
-
-    removeCurrentGrid();
-    createGrid(numSquaresPerSide);
-});
