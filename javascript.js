@@ -43,26 +43,25 @@ function createGrid(numSquaresPerSide = 16) {
 
 function hoverEffect() {
   const gridElements = document.querySelectorAll(".grid-element");
-  // div turns blue when mouse enters
+  // div turns random color when mouse enters
   gridElements.forEach((element) => {
     element.addEventListener("mouseover", () => {
-      const randomColor = generateRandomColor();
-      console.log(randomColor);
-      element.style.backgroundColor = randomColor;
-    });
-    // div turns back to white when mouse leaves
-    element.addEventListener("mouseout", () => {
-      element.style.backgroundColor = "white";
+      generateRandomColor(element);
+      increaseOpacity(element);
     });
   });
 }
 
-function generateRandomColor() {
+function increaseOpacity(element) {
+  element.style.opacity = `${+element.style.opacity + 0.1}`;
+}
+
+function generateRandomColor(element) {
   const r = Math.random() * 256;
   const g = Math.random() * 256;
   const b = Math.random() * 256;
   const randomRGB = `rgb(${r}, ${g}, ${b})`;
-  return randomRGB;
+  element.style.backgroundColor = randomRGB;
 }
 
 function removeCurrentGrid() {
